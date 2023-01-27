@@ -1,0 +1,70 @@
+@startuml Magic.lib
+
+!theme carbon-gray
+title Magic.lib
+
+class Player {
+    +GUID : guid
+    +GatherMana(ticks)    
+    +Cast(spell)
+    +Spellbook : array
+}
+
+class Session {
+    +CreatedAt : datetime
+	+Owner : Player
+    +Players[] : arrayList
+    +Tick : integer
+	+RegisterPlayer(Player) : result
+    +StartSession() : result
+    +EndSession() : result
+}
+
+class Air {
+    +CreateSphere(size, strength) : AirSphere
+    +CreateWall(length, width, strength) : AirWall
+    +ExtractOxygen(amount) : Element
+}
+
+class AirSphere {
+    +Size : integer
+    +Strength : integer
+    +Fill(object) : result
+    +Destroy() : result
+}
+
+class AirWall {
+    +Length : integer
+    +Width : integer
+    +Strength : integer
+    +Destroy() : result
+}
+
+class Earth {
+    +ExtractSulfur(amount) : Element
+}
+
+class Fire {
+    Spark(object) : object
+}
+
+class Water {
+    +ExtractHydrogen(amount) : Element
+}
+
+class Element {
+    +Type : string
+}
+
+class Gas {
+    +Elements : array
+}
+
+Session --* Player
+Air --> AirSphere
+Air --> AirWall
+Air --> Element
+Earth --> Element
+Element *-- Gas
+Water --> Element
+@enduml
