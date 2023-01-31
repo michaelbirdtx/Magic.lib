@@ -60,11 +60,11 @@ class Gas {
     +Elements : array
 }
 
-Session --* Player
+Session *-- Player
 Air --> AirSphere
 Air --> AirWall
 Air --> Element
 Earth --> Element
-Element *-- Gas
+Element --* Gas
 Water --> Element
 @enduml
